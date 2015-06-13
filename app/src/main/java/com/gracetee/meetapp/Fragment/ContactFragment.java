@@ -17,6 +17,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.gracetee.meetapp.Activity.Chat;
 import com.gracetee.meetapp.R;
 import com.gracetee.meetapp.utils.Const;
 import com.gracetee.meetapp.utils.Utils;
@@ -37,9 +38,6 @@ public class ContactFragment extends Fragment {
 
     /** The Chat list. */
     private ArrayList<ParseUser> uList;
-
-    /** The user. */
-    public static ParseUser user;
 
     FragmentActivity context;
 
@@ -139,7 +137,7 @@ public class ContactFragment extends Fragment {
     {
         final ProgressDialog dia = ProgressDialog.show(getActivity(), null,
                 getString(R.string.alert_loading));
-        ParseUser.getQuery().whereNotEqualTo("username", "gtee")
+        ParseUser.getQuery().whereNotEqualTo("username", Chat.user.getUsername())
                 .findInBackground(new FindCallback<ParseUser>() {
 
                     @Override
