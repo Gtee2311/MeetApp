@@ -75,8 +75,8 @@ public class Login extends CustomActivity
 					dia.dismiss();
 					if (pu != null)
 					{
-						UserList.user = pu;
-						startActivity(new Intent(Login.this, UserList.class));
+						Chat.user = pu;
+						startActivity(new Intent(Login.this, Chat.class));
 						finish();
 					}
 					else

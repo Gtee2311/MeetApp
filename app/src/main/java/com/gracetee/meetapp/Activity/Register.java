@@ -76,8 +76,8 @@ public class Register extends CustomActivity
 				dia.dismiss();
 				if (e == null)
 				{
-					UserList.user = pu;
-					startActivity(new Intent(Register.this, UserList.class));
+                    Chat.user = pu;
+					startActivity(new Intent(Register.this, Chat.class));
 					setResult(RESULT_OK);
 					finish();
 				}
