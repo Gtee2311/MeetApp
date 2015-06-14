@@ -1,7 +1,5 @@
 package com.gracetee.meetapp.Activity;
 
-import java.util.ArrayList;
-
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
@@ -18,10 +16,10 @@ import com.gracetee.meetapp.NavigationDrawer.NavigationDrawerCallbacks;
 import com.gracetee.meetapp.NavigationDrawer.NavigationDrawerFragment;
 import com.gracetee.meetapp.R;
 import com.gracetee.meetapp.ViewPagerAdapter.ChatPagerAdapter;
-import com.gracetee.meetapp.utils.SlidingTabLayout;
+import com.gracetee.meetapp.Utils.SlidingTabLayout;
 import com.parse.ParseUser;
 
-public class Chat extends AppCompatActivity
+public class ChatActivity extends AppCompatActivity
         implements NavigationDrawerCallbacks,ContactFragment.OnFragmentInteractionListener {
 
     /**

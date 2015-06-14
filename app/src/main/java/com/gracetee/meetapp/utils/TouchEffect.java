@@ -1,4 +1,4 @@
-package com.gracetee.meetapp.utils;
+package com.gracetee.meetapp.Utils;
 
 import android.graphics.drawable.Drawable;
 import android.view.MotionEvent;

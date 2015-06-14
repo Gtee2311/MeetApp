@@ -1,4 +1,4 @@
-package com.gracetee.meetapp.utils;
+package com.gracetee.meetapp.Utils;
 
 /**
  * The Class Const is a single common class to hold all the app Constants.

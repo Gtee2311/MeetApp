@@ -8,18 +8,18 @@ import android.widget.EditText;
 
 import com.gracetee.meetapp.Custom.CustomActivity;
 import com.gracetee.meetapp.R;
-import com.gracetee.meetapp.utils.Utils;
+import com.gracetee.meetapp.Utils.Utils;
 import com.parse.LogInCallback;
 import com.parse.ParseException;
 import com.parse.ParseUser;
 
 /**
- * The Class Login is an Activity class that shows the login screen to users.
+ * The Class LoginActivity is an Activity class that shows the login screen to users.
  * The current implementation simply includes the options for Login and button
  * for Register. On login button click, it sends the Login details to Parse
  * server to verify user.
  */
-public class Login extends CustomActivity
+public class LoginActivity extends CustomActivity
 {
 
 	/** The username edittext. */
@@ -29,7 +29,7 @@ public class Login extends CustomActivity
 	private EditText pwd;
 
 	/* (non-Javadoc)
-	 * @see com.chatt.Custom.CustomActivity#onCreate(android.os.Bundle)
+	 * @see com.gracetee.meetapp.Custom.CustomActivity#onCreate(android.os.Bundle)
 	 */
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -45,7 +45,7 @@ public class Login extends CustomActivity
 	}
 
 	/* (non-Javadoc)
-	 * @see com.chatt.Custom.CustomActivity#onClick(android.view.View)
+	 * @see com.gracetee.meetapp.Custom.CustomActivity#onClick(android.view.View)
 	 */
 	@Override
 	public void onClick(View v)
@@ -53,7 +53,7 @@ public class Login extends CustomActivity
 		super.onClick(v);
 		if (v.getId() == R.id.btnReg)
 		{
-			startActivityForResult(new Intent(this, Register.class), 10);
+			startActivityForResult(new Intent(this, RegisterActivity.class), 10);
 		}
 		else
 		{
@@ -75,14 +75,14 @@ public class Login extends CustomActivity
 					dia.dismiss();
 					if (pu != null)
 					{
-						Chat.user = pu;
-						startActivity(new Intent(Login.this, Chat.class));
+						ChatActivity.user = pu;
+						startActivity(new Intent(LoginActivity.this, ChatActivity.class));
 						finish();
 					}
 					else
 					{
 						Utils.showDialog(
-								Login.this,
+								LoginActivity.this,
 								getString(R.string.err_login) + " "
 										+ e.getMessage());
 						e.printStackTrace();

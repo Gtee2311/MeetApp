@@ -1,4 +1,4 @@
-package com.gracetee.meetapp.utils;
+package com.gracetee.meetapp.Utils;
 
 import android.app.Activity;
 import android.app.AlertDialog;

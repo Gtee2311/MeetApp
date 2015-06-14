@@ -2,11 +2,12 @@ package com.gracetee.meetapp.Custom;
 
 import android.app.ActionBar;
 import android.support.v4.app.FragmentActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.View.OnClickListener;
 
 import com.gracetee.meetapp.R;
-import com.gracetee.meetapp.utils.TouchEffect;
+import com.gracetee.meetapp.Utils.TouchEffect;
 
 /**
  * This is a common activity that all other activities of the app can extend to
@@ -29,7 +30,7 @@ public class CustomActivity extends FragmentActivity implements OnClickListener
 	public void setContentView(int layoutResID)
 	{
 		super.setContentView(layoutResID);
-		setupActionBar();
+		//setupActionBar();
 	}
 
 	/**
@@ -38,20 +39,19 @@ public class CustomActivity extends FragmentActivity implements OnClickListener
 	 * can override this method to change the behavior of ActionBar for
 	 * particular Activity
 	 */
-	protected void setupActionBar()
+	/*protected void setupActionBar()
 	{
-		final ActionBar actionBar = getActionBar();
-		if (actionBar == null)
-			return;
-		actionBar.setDisplayShowTitleEnabled(true);
-		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
-		actionBar.setDisplayUseLogoEnabled(true);
-		actionBar.setLogo(R.drawable.icon);
-		actionBar.setBackgroundDrawable(getResources().getDrawable(
+        Toolbar mToolbar = (Toolbar) findViewById(R.id.tool_bar);
+        setSupportActionBar(mToolbar);
+        mToolbar.setDisplayShowTitleEnabled(true);
+        mToolbar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
+        mToolbar.setDisplayUseLogoEnabled(true);
+        mToolbar.setLogo(R.drawable.icon);
+        mToolbar.setBackgroundDrawable(getResources().getDrawable(
 				R.drawable.actionbar_bg));
-		actionBar.setDisplayHomeAsUpEnabled(true);
-		actionBar.setHomeButtonEnabled(true);
-	}
+        mToolbar.setDisplayHomeAsUpEnabled(true);
+        mToolbar.setHomeButtonEnabled(true);
+	}*/
 
 	/**
 	 * Sets the touch and click listener for a view with given id.

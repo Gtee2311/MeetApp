@@ -17,10 +17,11 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.gracetee.meetapp.Activity.Chat;
+import com.gracetee.meetapp.Activity.ChatActivity;
+import com.gracetee.meetapp.Activity.ConversationActivity;
 import com.gracetee.meetapp.R;
-import com.gracetee.meetapp.utils.Const;
-import com.gracetee.meetapp.utils.Utils;
+import com.gracetee.meetapp.Utils.Const;
+import com.gracetee.meetapp.Utils.Utils;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseUser;
@@ -36,7 +37,7 @@ import java.util.List;
 
 public class ContactFragment extends Fragment {
 
-    /** The Chat list. */
+    /** The Contact list. */
     private ArrayList<ParseUser> uList;
 
     FragmentActivity context;
@@ -137,7 +138,7 @@ public class ContactFragment extends Fragment {
     {
         final ProgressDialog dia = ProgressDialog.show(getActivity(), null,
                 getString(R.string.alert_loading));
-        ParseUser.getQuery().whereNotEqualTo("username", Chat.user.getUsername())
+        ParseUser.getQuery().whereNotEqualTo("username", ChatActivity.user.getUsername())
                 .findInBackground(new FindCallback<ParseUser>() {
 
                     @Override
@@ -160,10 +161,11 @@ public class ContactFragment extends Fragment {
                                 public void onItemClick(AdapterView<?> arg0,
                                                         View arg1, int pos, long arg3)
                                 {
-//                                    startActivity(new Intent(getActivity(),
-//                                            Chat.class).putExtra(
-//                                            Const.EXTRA_DATA, uList.get(pos)
-//                                                    .getUsername()));
+                                    Bundle bundle = new Bundle();
+                                    bundle.putString(Const.EXTRA_DATA, uList.get(pos).getUsername());
+                                    Intent in=new Intent(getActivity(),ConversationActivity.class);
+                                    in.putExtras(bundle);
+                                    startActivity(in);
                                 }
                             });
                         }

@@ -17,7 +17,7 @@
             android:layout_width="match_parent"
             />
 
-        <com.gracetee.meetapp.utils.SlidingTabLayout
+        <com.gracetee.meetapp.Utils.SlidingTabLayout
             android:id="@+id/tabs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

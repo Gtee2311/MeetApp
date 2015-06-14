@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.gracetee.meetapp.utils;
+package com.gracetee.meetapp.Utils;
 
 import android.R;
 import android.content.Context;

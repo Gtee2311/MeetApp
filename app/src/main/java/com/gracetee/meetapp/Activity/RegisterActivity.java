@@ -8,16 +8,16 @@ import android.widget.EditText;
 
 import com.gracetee.meetapp.Custom.CustomActivity;
 import com.gracetee.meetapp.R;
-import com.gracetee.meetapp.utils.Utils;
+import com.gracetee.meetapp.Utils.Utils;
 import com.parse.ParseException;
 import com.parse.ParseUser;
 import com.parse.SignUpCallback;
 
 /**
- * The Class Register is the Activity class that shows user registration screen
- * that allows user to register itself on Parse server for this Chat app.
+ * The Class RegisterActivity is the Activity class that shows user registration screen
+ * that allows user to register itself on Parse server for this ChatActivity app.
  */
-public class Register extends CustomActivity
+public class RegisterActivity extends CustomActivity
 {
 
 	/** The username EditText. */
@@ -30,7 +30,7 @@ public class Register extends CustomActivity
 	private EditText email;
 
 	/* (non-Javadoc)
-	 * @see com.chatt.Custom.CustomActivity#onCreate(android.os.Bundle)
+	 * @see com.gracetee.meetapp.Custom.CustomActivity#onCreate(android.os.Bundle)
 	 */
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -46,7 +46,7 @@ public class Register extends CustomActivity
 	}
 
 	/* (non-Javadoc)
-	 * @see com.chatt.Custom.CustomActivity#onClick(android.view.View)
+	 * @see com.gracetee.meetapp.Custom.CustomActivity#onClick(android.view.View)
 	 */
 	@Override
 	public void onClick(View v)
@@ -76,15 +76,15 @@ public class Register extends CustomActivity
 				dia.dismiss();
 				if (e == null)
 				{
-                    Chat.user = pu;
-					startActivity(new Intent(Register.this, Chat.class));
+                    ChatActivity.user = pu;
+					startActivity(new Intent(RegisterActivity.this, ChatActivity.class));
 					setResult(RESULT_OK);
 					finish();
 				}
 				else
 				{
 					Utils.showDialog(
-							Register.this,
+							RegisterActivity.this,
 							getString(R.string.err_singup) + " "
 									+ e.getMessage());
 					e.printStackTrace();
