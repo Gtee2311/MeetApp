@@ -7,6 +7,7 @@ import java.util.List;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.InputType;
@@ -121,12 +122,19 @@ public class ConversationActivity extends AppCompatActivity implements View.OnCl
 
         setTouchNClick(R.id.btnSend);
 
-//        Bundle bundle = getIntent().getExtras();
-//        String buddy = bundle.getString(Const.EXTRA_DATA);
-        buddy = getIntent().getStringExtra(Const.EXTRA_DATA);
+        Bundle bundle = getIntent().getExtras();
+        buddy = bundle.getString(Const.EXTRA_DATA);
+        //buddy = getIntent().getStringExtra(Const.EXTRA_DATA);
         Toolbar mToolbar = (Toolbar) findViewById(R.id.tool_bar);
         setSupportActionBar(mToolbar);
-        mToolbar.setTitle(buddy);
+        getSupportActionBar().setLogo(R.drawable.icon);
+        getSupportActionBar().setTitle(buddy);
+        getSupportActionBar().setDisplayShowTitleEnabled(true);
+        getSupportActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
+        getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(
+                R.drawable.actionbar_bg));
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
 
         handler = new Handler();
     }
