@@ -11,16 +11,17 @@ import android.view.MenuItem;
 import android.widget.Toast;
 import android.support.v4.view.ViewPager;
 
+import com.gracetee.meetapp.Fragment.ChatFragment;
 import com.gracetee.meetapp.Fragment.ContactFragment;
 import com.gracetee.meetapp.NavigationDrawer.NavigationDrawerCallbacks;
 import com.gracetee.meetapp.NavigationDrawer.NavigationDrawerFragment;
 import com.gracetee.meetapp.R;
-import com.gracetee.meetapp.ViewPagerAdapter.ChatPagerAdapter;
+import com.gracetee.meetapp.ViewPagerAdapter.ChatActivityPagerAdapter;
 import com.gracetee.meetapp.Utils.SlidingTabLayout;
 import com.parse.ParseUser;
 
 public class ChatActivity extends AppCompatActivity
-        implements NavigationDrawerCallbacks,ContactFragment.OnFragmentInteractionListener {
+        implements NavigationDrawerCallbacks,ContactFragment.OnFragmentInteractionListener, ChatFragment.OnFragmentInteractionListener {
 
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
@@ -28,7 +29,7 @@ public class ChatActivity extends AppCompatActivity
     private NavigationDrawerFragment mNavigationDrawerFragment;
     private Toolbar mToolbar;
     private ViewPager mPager;
-    private ChatPagerAdapter mAdapter;
+    private ChatActivityPagerAdapter mAdapter;
     private SlidingTabLayout mTabs;
     private CharSequence Titles[]={"Contact","Chat"};
     private int Numboftabs =2;
@@ -46,7 +47,7 @@ public class ChatActivity extends AppCompatActivity
         setSupportActionBar(mToolbar);
 
         // Creating The ViewPagerAdapter and Passing Fragment Manager, Titles fot the Tabs and Number Of Tabs.
-        mAdapter =  new ChatPagerAdapter(getSupportFragmentManager(),Titles,Numboftabs);
+        mAdapter =  new ChatActivityPagerAdapter(getSupportFragmentManager(),Titles,Numboftabs);
 
         // Assigning ViewPager View and setting the adapter
         mPager = (ViewPager) findViewById(R.id.pager);
@@ -73,7 +74,7 @@ public class ChatActivity extends AppCompatActivity
         // Set up the drawer.
         mNavigationDrawerFragment.setup(R.id.fragment_drawer, (DrawerLayout) findViewById(R.id.drawer), mToolbar);
         // populate the navigation drawer
-        mNavigationDrawerFragment.setUserData("John Doe", "johndoe@doe.com", BitmapFactory.decodeResource(getResources(), R.drawable.avatar));
+        mNavigationDrawerFragment.setUserData(user.getUsername(), user.getEmail(), BitmapFactory.decodeResource(getResources(), R.drawable.avatar));
 
         updateUserStatus(true);
     }

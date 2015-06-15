@@ -11,14 +11,14 @@ import com.gracetee.meetapp.Fragment.ContactFragment;
  * Created by Grace on 13/6/2015.
  */
 
-public class ChatPagerAdapter extends FragmentStatePagerAdapter {
+public class ChatActivityPagerAdapter extends FragmentStatePagerAdapter {
 
     CharSequence Titles[]; // This will Store the Titles of the Tabs which are Going to be passed when ViewPagerAdapter is created
     int NumbOfTabs; // Store the number of tabs, this will also be passed when the ViewPagerAdapter is created
 
 
     // Build a Constructor and assign the passed Values to appropriate values in the class
-    public ChatPagerAdapter(FragmentManager fm,CharSequence mTitles[], int mNumbOfTabsumb) {
+    public ChatActivityPagerAdapter(FragmentManager fm, CharSequence mTitles[], int mNumbOfTabsumb) {
         super(fm);
 
         this.Titles = mTitles;
