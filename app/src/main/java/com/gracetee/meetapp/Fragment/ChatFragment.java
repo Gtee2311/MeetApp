@@ -38,7 +38,7 @@ import java.util.List;
 public class ChatFragment extends Fragment {
 
     /** The Chat list. */
-    private ArrayList<ParseUser> uList;
+    private ArrayList<ParseUser> cList;
 
     FragmentActivity context;
 
@@ -152,9 +152,9 @@ public class ChatFragment extends Fragment {
                                         R.string.msg_no_user_found,
                                         Toast.LENGTH_SHORT).show();
 
-                            uList = new ArrayList<ParseUser>(li);
-                            ListView list = (ListView) getActivity().findViewById(R.id.list);
-                            list.setAdapter(new UserAdapter());
+                            cList = new ArrayList<ParseUser>(li);
+                            ListView list = (ListView) getView().findViewById(R.id.list);
+                            list.setAdapter(new ChatAdapter());
                             list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
                                 @Override
@@ -162,7 +162,7 @@ public class ChatFragment extends Fragment {
                                                         View arg1, int pos, long arg3)
                                 {
                                     Bundle bundle = new Bundle();
-                                    bundle.putString(Const.EXTRA_DATA, uList.get(pos).getUsername());
+                                    bundle.putString(Const.EXTRA_DATA, cList.get(pos).getUsername());
                                     Intent in=new Intent(getActivity(),ConversationActivity.class);
                                     in.putExtras(bundle);
                                     startActivity(in);
@@ -181,7 +181,7 @@ public class ChatFragment extends Fragment {
                 });
     }
 
-    private class UserAdapter extends BaseAdapter
+    private class ChatAdapter extends BaseAdapter
     {
 
         /* (non-Javadoc)
@@ -190,7 +190,7 @@ public class ChatFragment extends Fragment {
         @Override
         public int getCount()
         {
-            return uList.size();
+            return cList.size();
         }
 
         /* (non-Javadoc)
@@ -199,7 +199,7 @@ public class ChatFragment extends Fragment {
         @Override
         public ParseUser getItem(int arg0)
         {
-            return uList.get(arg0);
+            return cList.get(arg0);
         }
 
         /* (non-Javadoc)

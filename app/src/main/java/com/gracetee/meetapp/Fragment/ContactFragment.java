@@ -153,7 +153,7 @@ public class ContactFragment extends Fragment {
                                         Toast.LENGTH_SHORT).show();
 
                             uList = new ArrayList<ParseUser>(li);
-                            ListView list = (ListView) getActivity().findViewById(R.id.list);
+                            ListView list = (ListView) getView().findViewById(R.id.list);
                             list.setAdapter(new UserAdapter());
                             list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
