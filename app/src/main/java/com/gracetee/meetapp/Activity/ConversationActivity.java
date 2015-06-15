@@ -124,10 +124,8 @@ public class ConversationActivity extends AppCompatActivity implements View.OnCl
 
         Bundle bundle = getIntent().getExtras();
         buddy = bundle.getString(Const.EXTRA_DATA);
-        //buddy = getIntent().getStringExtra(Const.EXTRA_DATA);
         Toolbar mToolbar = (Toolbar) findViewById(R.id.tool_bar);
         setSupportActionBar(mToolbar);
-        getSupportActionBar().setLogo(R.drawable.icon);
         getSupportActionBar().setTitle(buddy);
         getSupportActionBar().setDisplayShowTitleEnabled(true);
         getSupportActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
