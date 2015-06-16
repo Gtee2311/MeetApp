@@ -152,6 +152,8 @@ public class ContactFragment extends Fragment {
                                         R.string.msg_no_user_found,
                                         Toast.LENGTH_SHORT).show();
 
+                            ChatActivity CA = (ChatActivity)getActivity();
+                            CA.setuList(new ArrayList<ParseUser>(li));
                             uList = new ArrayList<ParseUser>(li);
                             ListView list = (ListView) getView().findViewById(R.id.list);
                             list.setAdapter(new UserAdapter());

@@ -20,8 +20,21 @@ import com.gracetee.meetapp.ViewPagerAdapter.ChatActivityPagerAdapter;
 import com.gracetee.meetapp.Utils.SlidingTabLayout;
 import com.parse.ParseUser;
 
+import java.util.ArrayList;
+
 public class ChatActivity extends AppCompatActivity
         implements NavigationDrawerCallbacks,ContactFragment.OnFragmentInteractionListener, ChatFragment.OnFragmentInteractionListener {
+
+    /** The Contact list. */
+    public ArrayList<ParseUser> uList;
+
+    public ArrayList<ParseUser> getuList() {
+        return uList;
+    }
+
+    public void setuList(ArrayList<ParseUser> users) {
+        this.uList = users;
+    }
 
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.

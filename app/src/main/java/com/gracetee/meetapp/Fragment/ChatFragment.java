@@ -19,11 +19,15 @@ import android.widget.Toast;
 
 import com.gracetee.meetapp.Activity.ChatActivity;
 import com.gracetee.meetapp.Activity.ConversationActivity;
+import com.gracetee.meetapp.Model.Conversation;
 import com.gracetee.meetapp.R;
 import com.gracetee.meetapp.Utils.Const;
 import com.gracetee.meetapp.Utils.Utils;
 import com.parse.FindCallback;
 import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
+import com.parse.ParseQueryAdapter;
 import com.parse.ParseUser;
 
 import java.util.ArrayList;
@@ -37,8 +41,18 @@ import java.util.List;
 
 public class ChatFragment extends Fragment {
 
-    /** The Chat list. */
-    private ArrayList<ParseUser> cList;
+    /** The Contact list. */
+    ChatActivity CA = (ChatActivity)getActivity();
+    private ArrayList<ParseUser> uList = CA.getuList();
+
+    /** The Conversation list. */
+    private ArrayList<Conversation> convList;
+
+    /** The user name of buddy. */
+    private String buddy;
+
+    /** The last message. */
+    private String lastMessage;
 
     FragmentActivity context;
 
@@ -138,47 +152,65 @@ public class ChatFragment extends Fragment {
     {
         final ProgressDialog dia = ProgressDialog.show(getActivity(), null,
                 getString(R.string.alert_loading));
-        ParseUser.getQuery().whereNotEqualTo("username", ChatActivity.user.getUsername())
-                .findInBackground(new FindCallback<ParseUser>() {
+        if (uList != null && uList.size() > 0) {
+            for (int i = uList.size() - 1; i >= 0; i--) {
+                buddy = uList.get(i).getUsername();
+                ParseQuery<ParseObject> send = ParseQuery.getQuery("Chat");
+                send.whereEqualTo("sender", ChatActivity.user.getUsername());
+                send.whereEqualTo("receiver", buddy);
 
-                    @Override
-                    public void done(List<ParseUser> li, ParseException e)
-                    {
-                        dia.dismiss();
-                        if (li != null)
-                        {
-                            if (li.size() == 0)
-                                Toast.makeText(getActivity(),
-                                        R.string.msg_no_user_found,
-                                        Toast.LENGTH_SHORT).show();
+                ParseQuery<ParseObject> receive = ParseQuery.getQuery("Chat");
+                receive.whereEqualTo("receiver", ChatActivity.user.getUsername());
+                receive.whereEqualTo("sender", buddy);
 
-                            cList = new ArrayList<ParseUser>(li);
-                            ListView list = (ListView) getView().findViewById(R.id.list);
-                            list.setAdapter(new ChatAdapter());
-                            list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                List<ParseQuery<ParseObject>> queries = new ArrayList<ParseQuery<ParseObject>>();
+                queries.add(send);
+                queries.add(receive);
 
-                                @Override
-                                public void onItemClick(AdapterView<?> arg0,
-                                                        View arg1, int pos, long arg3)
-                                {
-                                    Bundle bundle = new Bundle();
-                                    bundle.putString(Const.EXTRA_DATA, cList.get(pos).getUsername());
-                                    Intent in=new Intent(getActivity(),ConversationActivity.class);
-                                    in.putExtras(bundle);
-                                    startActivity(in);
+                ParseQuery<ParseObject> compoundQuery = ParseQuery.or(queries);
+                compoundQuery.setLimit(1)
+                        .findInBackground(new FindCallback<ParseObject>() {
+
+                            @Override
+                            public void done(List<ParseObject> li, ParseException e) {
+                                dia.dismiss();
+                                if (li != null) {
+//                                    if (li.size() == 0)
+//                                        Toast.makeText(getActivity(),
+//                                                R.string.msg_no_msg_found,
+//                                                Toast.LENGTH_SHORT).show();
+
+                                    if (li != null && li.size() > 0) {
+                                        for (int i = li.size() - 1; i >= 0; i--) {
+                                            ParseObject po = li.get(i);
+                                            lastMessage = po.getString("message");
+                                        }
+                                    }
+                                    ListView list = (ListView) getView().findViewById(R.id.list);
+                                    list.setAdapter(new ChatAdapter());
+                                    list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+                                        @Override
+                                        public void onItemClick(AdapterView<?> arg0,
+                                                                View arg1, int pos, long arg3) {
+                                            Bundle bundle = new Bundle();
+                                            bundle.putString(Const.EXTRA_DATA, buddy);
+                                            Intent in = new Intent(getActivity(), ConversationActivity.class);
+                                            in.putExtras(bundle);
+                                            startActivity(in);
+                                        }
+                                    });
+                                } else {
+                                    Utils.showDialog(
+                                            getActivity(),
+                                            getString(R.string.err_users) + " "
+                                                    + e.getMessage());
+                                    e.printStackTrace();
                                 }
-                            });
-                        }
-                        else
-                        {
-                            Utils.showDialog(
-                                    getActivity(),
-                                    getString(R.string.err_users) + " "
-                                            + e.getMessage());
-                            e.printStackTrace();
-                        }
-                    }
-                });
+                            }
+                        });
+            }
+        };
     }
 
     private class ChatAdapter extends BaseAdapter
@@ -190,16 +222,16 @@ public class ChatFragment extends Fragment {
         @Override
         public int getCount()
         {
-            return cList.size();
+            return convList.size();
         }
 
         /* (non-Javadoc)
          * @see android.widget.Adapter#getItem(int)
          */
         @Override
-        public ParseUser getItem(int arg0)
+        public Conversation getItem(int arg0)
         {
-            return cList.get(arg0);
+            return convList.get(arg0);
         }
 
         /* (non-Javadoc)
@@ -223,14 +255,14 @@ public class ChatFragment extends Fragment {
 
             }
 
-            ParseUser c = getItem(pos);
+            Conversation c = getItem(pos);
             TextView lbl1 = (TextView) v.findViewById(R.id.buddy_name);
-            lbl1.setText(c.getUsername());
+            lbl1.setText(c.getMsg());
             TextView lbl2 = (TextView) v.findViewById(R.id.buddy_conversation);
-            lbl2.setText(c.getEmail());
-            lbl1.setCompoundDrawablesWithIntrinsicBounds(
-                    c.getBoolean("online") ? R.drawable.ic_online
-                            : R.drawable.ic_offline, 0, R.drawable.arrow, 0);
+            lbl2.setText(c.getMsg());
+//            lbl1.setCompoundDrawablesWithIntrinsicBounds(
+//                    c.getBoolean("online") ? R.drawable.ic_online
+//                            : R.drawable.ic_offline, 0, R.drawable.arrow, 0);
 
             return v;
         }
