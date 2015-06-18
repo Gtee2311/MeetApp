@@ -37,6 +37,8 @@ import java.util.List;
 
 public class ContactFragment extends Fragment {
 
+    private ParseUser user = Const.user;
+
     /** The Contact list. */
     private ArrayList<ParseUser> uList;
 
@@ -79,6 +81,7 @@ public class ContactFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         loadUserList();
+
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
@@ -138,7 +141,7 @@ public class ContactFragment extends Fragment {
     {
         final ProgressDialog dia = ProgressDialog.show(getActivity(), null,
                 getString(R.string.alert_loading));
-        ParseUser.getQuery().whereNotEqualTo("username", ChatActivity.user.getUsername())
+        ParseUser.getQuery().whereNotEqualTo("username", user.getUsername())
                 .findInBackground(new FindCallback<ParseUser>() {
 
                     @Override

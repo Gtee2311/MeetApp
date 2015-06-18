@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.ActionBar;
@@ -22,6 +23,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
 import com.gracetee.meetapp.Custom.CustomActivity;
 import com.gracetee.meetapp.Model.Conversation;
 import com.gracetee.meetapp.R;
@@ -31,6 +33,7 @@ import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
+import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
 /**
@@ -40,6 +43,9 @@ import com.parse.SaveCallback;
  */
 public class ConversationActivity extends AppCompatActivity implements View.OnClickListener
 {
+
+    /** The user. */
+    private ParseUser user = Const.user;
 
     /** The Conversation list. */
     private ArrayList<Conversation> convList;
@@ -186,14 +192,14 @@ public class ConversationActivity extends AppCompatActivity implements View.OnCl
 
         String s = txt.getText().toString();
         final Conversation c = new Conversation(s, new Date(),
-                ChatActivity.user.getUsername());
+                user.getUsername());
         c.setStatus(Conversation.STATUS_SENDING);
         convList.add(c);
         adp.notifyDataSetChanged();
         txt.setText(null);
 
         ParseObject po = new ParseObject("Chat");
-        po.put("sender", ChatActivity.user.getUsername());
+        po.put("sender", user.getUsername());
         po.put("receiver", buddy);
         // po.put("createdAt", "");
         po.put("message", s);
@@ -223,7 +229,7 @@ public class ConversationActivity extends AppCompatActivity implements View.OnCl
             // load all messages...
             ArrayList<String> al = new ArrayList<String>();
             al.add(buddy);
-            al.add(ChatActivity.user.getUsername());
+            al.add(user.getUsername());
             q.whereContainedIn("sender", al);
             q.whereContainedIn("receiver", al);
         }
@@ -233,7 +239,7 @@ public class ConversationActivity extends AppCompatActivity implements View.OnCl
             if (lastMsgDate != null)
                 q.whereGreaterThan("createdAt", lastMsgDate);
             q.whereEqualTo("sender", buddy);
-            q.whereEqualTo("receiver", ChatActivity.user.getUsername());
+            q.whereEqualTo("receiver", user.getUsername());
         }
         q.orderByDescending("createdAt");
         q.setLimit(30);

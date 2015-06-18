@@ -37,6 +37,9 @@ import java.util.List;
 
 public class ChatFragment extends Fragment {
 
+    /** The user. */
+    private ParseUser user = Const.user;
+
     /** The Chat list. */
     private ArrayList<ParseUser> cList;
 
@@ -138,7 +141,7 @@ public class ChatFragment extends Fragment {
     {
         final ProgressDialog dia = ProgressDialog.show(getActivity(), null,
                 getString(R.string.alert_loading));
-        ParseUser.getQuery().whereNotEqualTo("username", ChatActivity.user.getUsername())
+        ParseUser.getQuery().whereNotEqualTo("username", user.getUsername())
                 .findInBackground(new FindCallback<ParseUser>() {
 
                     @Override

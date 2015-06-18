@@ -4,26 +4,27 @@ import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
-import android.support.v4.view.ViewPager;
 
-import com.gracetee.meetapp.Fragment.ChatFragment;
-import com.gracetee.meetapp.Fragment.ContactFragment;
 import com.gracetee.meetapp.NavigationDrawer.NavigationDrawerCallbacks;
 import com.gracetee.meetapp.NavigationDrawer.NavigationDrawerFragment;
 import com.gracetee.meetapp.R;
 import com.gracetee.meetapp.Utils.Const;
-import com.gracetee.meetapp.ViewPagerAdapter.ChatActivityPagerAdapter;
 import com.gracetee.meetapp.Utils.SlidingTabLayout;
+import com.gracetee.meetapp.ViewPagerAdapter.MyEventsActivityPagerAdapter;
 import com.parse.ParseUser;
 
-public class ChatActivity extends AppCompatActivity
-        implements NavigationDrawerCallbacks,ContactFragment.OnFragmentInteractionListener, ChatFragment.OnFragmentInteractionListener {
+public class DiscoverEventsActivity extends AppCompatActivity
+        implements NavigationDrawerCallbacks {
+
+    /** The user. */
+    private ParseUser user = Const.user;
 
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
@@ -31,25 +32,22 @@ public class ChatActivity extends AppCompatActivity
     private NavigationDrawerFragment mNavigationDrawerFragment;
     private Toolbar mToolbar;
     private ViewPager mPager;
-    private ChatActivityPagerAdapter mAdapter;
+    private MyEventsActivityPagerAdapter mAdapter;
     private SlidingTabLayout mTabs;
-    private CharSequence Titles[]={"Contact","Chat"};
+    private CharSequence Titles[]={"Discover","Invited"};
     private int Numboftabs =2;
-
-    /** The user. */
-    private static ParseUser user = Const.user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_chat);
+        setContentView(R.layout.activity_discover_events);
 
         // Creating The Toolbar and setting it as the Toolbar for the activity
         mToolbar = (Toolbar) findViewById(R.id.tool_bar);
         setSupportActionBar(mToolbar);
 
         // Creating The ViewPagerAdapter and Passing Fragment Manager, Titles fot the Tabs and Number Of Tabs.
-        mAdapter =  new ChatActivityPagerAdapter(getSupportFragmentManager(),Titles,Numboftabs);
+        mAdapter =  new MyEventsActivityPagerAdapter(getSupportFragmentManager(),Titles,Numboftabs);
 
         // Assigning ViewPager View and setting the adapter
         mPager = (ViewPager) findViewById(R.id.pager);
@@ -78,32 +76,18 @@ public class ChatActivity extends AppCompatActivity
         // populate the navigation drawer
         mNavigationDrawerFragment.setUserData(user.getUsername(), user.getEmail(), BitmapFactory.decodeResource(getResources(), R.drawable.avatar));
 
-        updateUserStatus(true);
     }
 
     @Override
     protected void onDestroy()
     {
         super.onDestroy();
-        updateUserStatus(false);
     }
 
     @Override
     protected void onResume()
     {
         super.onResume();
-    }
-
-    /**
-     * Update user status.
-     *
-     * @param online
-     *            true if user is online
-     */
-    private void updateUserStatus(boolean online)
-    {
-        user.put("online", online);
-        user.saveEventually();
     }
 
     @Override
@@ -114,9 +98,9 @@ public class ChatActivity extends AppCompatActivity
             case 1: //Settings
                 break;
             case 2: //Chat
+                startActivity(new Intent(this, ChatActivity.class));
                 break;
             case 3: //DiscoverEvents
-                startActivity(new Intent(this, DiscoverEventsActivity.class));
                 break;
             case 4: //My Events
                 startActivity(new Intent(this, MyEventsActivity.class));

@@ -1,5 +1,7 @@
 package com.gracetee.meetapp.Utils;
 
+import com.parse.ParseUser;
+
 /**
  * The Class Const is a single common class to hold all the app Constants.
  */
@@ -8,4 +10,8 @@ public class Const
 
 	/** The Constant EXTRA_DATA. */
 	public static final String EXTRA_DATA = "extraData";
+
+    /** The Constant user. */
+    public static ParseUser user;
+
 }

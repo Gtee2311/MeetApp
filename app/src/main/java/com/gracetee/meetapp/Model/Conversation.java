@@ -1,8 +1,13 @@
 package com.gracetee.meetapp.Model;
 
-import java.util.Date;
+import android.content.SharedPreferences;
 
+import com.google.gson.Gson;
 import com.gracetee.meetapp.Activity.ChatActivity;
+import com.gracetee.meetapp.Utils.Const;
+import com.parse.ParseUser;
+
+import java.util.Date;
 
 /**
  * The Class Conversation is a Java Bean class that represents a single chat
@@ -10,6 +15,9 @@ import com.gracetee.meetapp.Activity.ChatActivity;
  */
 public class Conversation
 {
+
+    /** The user. */
+    private ParseUser user = Const.user;
 
 	/** The Constant STATUS_SENDING. */
 	public static final int STATUS_SENDING = 0;
@@ -83,7 +91,7 @@ public class Conversation
 	 */
 	public boolean isSent()
 	{
-		return ChatActivity.user.getUsername().equals(sender);
+		return user.getUsername().equals(sender);
 	}
 
 	/**
