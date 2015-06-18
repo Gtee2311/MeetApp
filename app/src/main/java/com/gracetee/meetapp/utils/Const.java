@@ -13,5 +13,4 @@ public class Const
 
     /** The Constant user. */
     public static ParseUser user;
-
 }

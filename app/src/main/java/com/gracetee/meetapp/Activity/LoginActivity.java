@@ -4,7 +4,6 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.EditText;
 
@@ -86,13 +85,14 @@ public class LoginActivity extends CustomActivity
 					dia.dismiss();
 					if (pu != null)
 					{
-//                        //saving user in the default preference file
-//                        preferenceSettings = getPreferences(PREFERENCE_MODE_PRIVATE);
-//                        preferenceEditor = preferenceSettings.edit();
-//                        Gson gson = new Gson();
-//                        String json = gson.toJson(pu);
-//                        preferenceEditor.putString("LoginUserObj", json);
-//                        preferenceEditor.commit();
+                        preferenceSettings = getSharedPreferences("LoginUser",PREFERENCE_MODE_PRIVATE);
+                        preferenceEditor = preferenceSettings.edit();
+
+                        Gson gson = new Gson();
+                        String json = gson.toJson(pu);
+
+                        preferenceEditor.putString("User", json);
+                        preferenceEditor.commit();
                         Const.user = pu;
 						startActivity(new Intent(LoginActivity.this, ChatActivity.class));
 						finish();

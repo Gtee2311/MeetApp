@@ -12,15 +12,20 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".Activity.LoginActivity"
-            android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen"
-            android:windowSoftInputMode="stateHidden" >
+            android:name=".Activity.SplashScreen"
+            android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".Activity.LoginActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen"
+            android:windowSoftInputMode="stateHidden" >
+
         </activity>
         <activity
             android:name=".Activity.RegisterActivity"
@@ -30,7 +35,7 @@
         </activity>
         <activity
             android:name=".Activity.ChatActivity"
-            android:label="@string/app_name" >
+            android:label="@string/title_activity_chat" >
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustResize" >
         </activity>
@@ -40,7 +45,7 @@
         </activity>
         <activity
             android:name=".Activity.MyEventsActivity"
-            android:label="@string/title_activity_my_events"  >
+            android:label="@string/title_activity_my_events" >
         </activity>
         <activity
             android:name=".Activity.ConversationActivity"

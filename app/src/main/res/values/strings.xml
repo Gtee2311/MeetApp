@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">MeetApp</string>
+    <string name="app_name">Meeterholic</string>
     <string name="drawer_open">Menu opened</string>
     <string name="drawer_close">Menu closed</string>
     <string name="action_settings">Settings</string>
@@ -33,4 +33,6 @@
     <string name="title_activity_notification">Notification</string>
     <string name="title_activity_discover_events">Discover Events</string>
     <string name="title_activity_my_events">My Events</string>
+    <string name="title_activity_splash_screen">SplashScreen</string>
+
 </resources>
