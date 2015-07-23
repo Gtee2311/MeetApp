@@ -3,6 +3,7 @@ package com.gracetee.meetapp.Activity;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.net.nsd.NsdManager;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
@@ -12,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.gracetee.meetapp.Fragment.DiscoverFragment;
 import com.gracetee.meetapp.NavigationDrawer.NavigationDrawerCallbacks;
 import com.gracetee.meetapp.NavigationDrawer.NavigationDrawerFragment;
 import com.gracetee.meetapp.R;
@@ -22,7 +24,7 @@ import com.gracetee.meetapp.ViewPagerAdapter.MyEventsActivityPagerAdapter;
 import com.parse.ParseUser;
 
 public class DiscoverEventsActivity extends AppCompatActivity
-        implements NavigationDrawerCallbacks {
+        implements NavigationDrawerCallbacks, DiscoverFragment.OnFragmentInteractionListener {
 
     /** The user. */
     private ParseUser user = Const.user;

@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical" >
+
+    <android.support.v7.widget.CardView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        card_view:cardCornerRadius="3dp"
+        android:layout_marginTop="9dp"
+        android:layout_marginLeft="9dp"
+        android:layout_marginRight="9dp"
+        card_view:cardElevation="0.01dp"
+        android:layout_marginBottom="0dp">
+        <RelativeLayout
+            android:id="@+id/top_layout"
+            android:layout_width="fill_parent"
+            android:layout_height="250dp">
+
+            <TextView
+                android:id="@+id/cd_event"
+                android:layout_width="fill_parent"
+                android:layout_height="35dp"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin"
+                android:layout_gravity="bottom"
+                android:gravity="center_vertical"
+                android:background="#A9F5A9"
+                android:alpha="0.8"
+                android:textColor="#000000"
+                android:textSize="22sp"
+                android:text="Event Name"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <TextView
+                android:id="@+id/date_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin"
+                android:paddingTop="4dp"
+                android:paddingBottom="1dp"
+                android:alpha="0.8"
+                android:textColor="#ff272727"
+                android:textSize="15dp"
+                android:text="Date: "
+                android:layout_below="@+id/cd_event"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <TextView
+                android:id="@+id/cd_from_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="4dp"
+                android:paddingBottom="1dp"
+                android:alpha="0.8"
+                android:textColor="#ff272727"
+                android:textSize="15dp"
+                android:text="From"
+                android:layout_below="@+id/cd_event"
+                android:layout_toRightOf="@+id/date_label"
+                android:layout_toEndOf="@+id/date_label" />
+
+            <TextView
+                android:id="@+id/cd_dash1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="4dp"
+                android:paddingBottom="1dp"
+                android:alpha="0.8"
+                android:textColor="#ff272727"
+                android:textSize="15dp"
+                android:text=" to "
+                android:layout_below="@+id/cd_event"
+                android:layout_toRightOf="@+id/cd_from_date"
+                android:layout_toEndOf="@+id/cd_from_date" />
+
+            <TextView
+                android:id="@+id/cd_to_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="4dp"
+                android:paddingBottom="1dp"
+                android:alpha="0.8"
+                android:textColor="#ff272727"
+                android:textSize="15dp"
+                android:text="To"
+                android:layout_below="@+id/cd_event"
+                android:layout_toRightOf="@+id/cd_dash1"
+                android:layout_toEndOf="@+id/cd_from_date" />
+
+            <TextView
+                android:id="@+id/time_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin"
+                android:paddingTop="4dp"
+                android:paddingBottom="1dp"
+                android:alpha="0.8"
+                android:textColor="#ff272727"
+                android:textSize="15dp"
+                android:text="Time: "
+                android:layout_below="@+id/date_label"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <TextView
+                android:id="@+id/cd_start_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="4dp"
+                android:paddingBottom="1dp"
+                android:alpha="0.8"
+                android:textColor="#ff272727"
+                android:textSize="15dp"
+                android:text="Start"
+                android:layout_below="@+id/date_label"
+                android:layout_toRightOf="@+id/time_label"
+                android:layout_toEndOf="@+id/time_label" />
+
+            <TextView
+                android:id="@+id/cd_dash2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="4dp"
+                android:paddingBottom="1dp"
+                android:alpha="0.8"
+                android:textColor="#ff272727"
+                android:textSize="15dp"
+                android:text=" to "
+                android:layout_below="@+id/date_label"
+                android:layout_toRightOf="@+id/cd_from_date"
+                android:layout_toEndOf="@+id/cd_from_date" />
+
+            <TextView
+                android:id="@+id/cd_end_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="4dp"
+                android:paddingBottom="1dp"
+                android:alpha="0.8"
+                android:textColor="#ff272727"
+                android:textSize="15dp"
+                android:text="End"
+                android:layout_below="@+id/date_label"
+                android:layout_toRightOf="@+id/cd_dash2"
+                android:layout_toEndOf="@+id/time_label" />
+
+            <TextView
+                android:id="@+id/venue_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin"
+                android:paddingTop="4dp"
+                android:paddingBottom="1dp"
+                android:alpha="0.8"
+                android:textColor="#ff272727"
+                android:textSize="15dp"
+                android:text="Venue: "
+                android:layout_below="@+id/time_label"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"/>
+
+            <TextView
+                android:id="@+id/cd_venue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingRight="@dimen/activity_horizontal_margin"
+                android:paddingTop="4dp"
+                android:paddingBottom="1dp"
+                android:alpha="0.8"
+                android:textColor="#ff272727"
+                android:textSize="15dp"
+                android:text="Venue"
+                android:layout_below="@+id/time_label"
+                android:layout_toRightOf="@+id/venue_label"
+                android:layout_toEndOf="@+id/venue_label"/>
+
+            <TextView
+                android:id="@+id/organizer_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin"
+                android:paddingTop="4dp"
+                android:paddingBottom="1dp"
+                android:alpha="0.8"
+                android:textColor="#ff272727"
+                android:textSize="15dp"
+                android:text="Organizer: "
+                android:layout_below="@+id/venue_label"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"/>
+
+            <TextView
+                android:id="@+id/cd_organizer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingRight="@dimen/activity_horizontal_margin"
+                android:paddingTop="4dp"
+                android:paddingBottom="1dp"
+                android:alpha="0.8"
+                android:textColor="#ff272727"
+                android:textSize="15dp"
+                android:text="Organizer"
+                android:layout_below="@+id/venue_label"
+                android:layout_toRightOf="@+id/organizer_label"
+                android:layout_toEndOf="@+id/organizer_label"/>
+
+            <TextView
+                android:id="@+id/desc_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin"
+                android:paddingTop="16dp"
+                android:paddingBottom="1dp"
+                android:alpha="0.8"
+                android:textColor="#ff272727"
+                android:textSize="15dp"
+                android:text="Description: "
+                android:layout_below="@+id/organizer_label"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <TextView
+                android:id="@+id/cd_desc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin"
+                android:paddingTop="4dp"
+                android:paddingBottom="1dp"
+                android:alpha="0.8"
+                android:textColor="#ff272727"
+                android:textSize="15dp"
+                android:text="Desc Desc Desc Desc Desc Desc Desc Desc Desc Desc Desc Desc Desc Desc Desc Desc "
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_below="@+id/registerbutton" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="37dp"
+                android:text="Register"
+                android:textSize="12dp"
+                android:id="@+id/registerbutton"
+                android:layout_alignTop="@+id/desc_label"
+                android:layout_toRightOf="@+id/cd_organizer"
+                android:layout_toEndOf="@+id/cd_organizer" />
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="37dp"
+                android:text="Call"
+                android:textSize="12dp"
+                android:id="@+id/callbutton"
+                android:layout_alignTop="@+id/desc_label"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+</LinearLayout>

@@ -19,35 +19,63 @@ public class Event extends ParseObject {
 		put("Event Name", eventName);
 	}
 
-    public String getDate() {
-        return getString("Date");
+    public String getDesc() {
+        return getString("Event Description");
     }
 
-    public void setDate(String eventDate) {
-        put("Date", eventDate);
+    public void setDesc(String eventDesc) {
+        put("Event Description", eventDesc);
     }
 
-    public String getTime() {
-        return getString("Time");
+    public String getFromDate() { return getString("FromDate");}
+
+    public void setFromDate(String fromEventDate) {
+        put("FromDate", fromEventDate);
     }
 
-    public void setTime(String eventTime) {
-        put("Time", eventTime);
+    public String getToDate() { return getString("ToDate");}
+
+    public void setToDate(String toEventDate) {
+        put("ToDate", toEventDate);
     }
-	
-	public ParseUser getOrganizer() {
-		return getParseUser("Organizer");
+
+    public String getStartTime() {
+        return getString("StartTime");
+    }
+
+    public void setStartTime(String eventStartTime) {
+        put("StartTime", eventStartTime);
+    }
+
+    public String getEndTime() {
+        return getString("EndTime");
+    }
+
+    public void setEndTime(String eventEndTime) {
+        put("EndTime", eventEndTime);
+    }
+
+	public String getOrganizer() {
+		return getString("Organizer");
 	}
 	
 	public void setOrganizer(ParseUser currentUser) {
 		put("Organizer", currentUser);
 	}
 
+    public String getVenue() {
+        return getString("Venue");
+    }
+
+    public void setVenue(String eventVenue) {
+        put("Venue", eventVenue);
+    }
+
     public ParseFile getFloorMap() {
         return getParseFile("Floor Map");
     }
 
-    public void setOrganizer(ParseFile venuePic) { put("Floor Map", venuePic);
+    public void setFloorMap(ParseFile venuePic) { put("Floor Map", venuePic);
     }
 
 	public boolean isDraft() {
