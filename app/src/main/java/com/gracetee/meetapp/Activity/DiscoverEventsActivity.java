@@ -17,6 +17,7 @@ import com.gracetee.meetapp.NavigationDrawer.NavigationDrawerFragment;
 import com.gracetee.meetapp.R;
 import com.gracetee.meetapp.Utils.Const;
 import com.gracetee.meetapp.Utils.SlidingTabLayout;
+import com.gracetee.meetapp.ViewPagerAdapter.DiscoverEventsActivityPagerAdapter;
 import com.gracetee.meetapp.ViewPagerAdapter.MyEventsActivityPagerAdapter;
 import com.parse.ParseUser;
 
@@ -32,7 +33,7 @@ public class DiscoverEventsActivity extends AppCompatActivity
     private NavigationDrawerFragment mNavigationDrawerFragment;
     private Toolbar mToolbar;
     private ViewPager mPager;
-    private MyEventsActivityPagerAdapter mAdapter;
+    private DiscoverEventsActivityPagerAdapter mAdapter;
     private SlidingTabLayout mTabs;
     private CharSequence Titles[]={"Discover","Invited"};
     private int Numboftabs =2;
@@ -47,7 +48,7 @@ public class DiscoverEventsActivity extends AppCompatActivity
         setSupportActionBar(mToolbar);
 
         // Creating The ViewPagerAdapter and Passing Fragment Manager, Titles fot the Tabs and Number Of Tabs.
-        mAdapter =  new MyEventsActivityPagerAdapter(getSupportFragmentManager(),Titles,Numboftabs);
+        mAdapter =  new DiscoverEventsActivityPagerAdapter(getSupportFragmentManager(),Titles,Numboftabs);
 
         // Assigning ViewPager View and setting the adapter
         mPager = (ViewPager) findViewById(R.id.pager);
